@@ -57,4 +57,6 @@ Ivana Nolasco dos Santos
 
 Vinicius Brito de Oliveira - @VnncsB
 
+Bianca Senna - @bncasenna-cmd
+
 Este projeto foi desenvolvido como requisito para a conclusão do módulo de Backend do programa Bolsa Futuro Digital - CEPEDI.
