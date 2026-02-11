@@ -50,10 +50,11 @@ O backend fornece suporte para as seguintes interfaces:
 ---
 
 Desenvolvedores
+
 Rafaela Vitoria Marques Souza - @rafaelavisoouza
 
-Nome do Integrante 2 - [GitHub]
+Ivana Nolasco dos Santos
 
-Nome do Integrante 3 - [GitHub]
+Vinicius Brito de Oliveira - @VnncsB
 
 Este projeto foi desenvolvido como requisito para a conclusão do módulo de Backend do programa Bolsa Futuro Digital - CEPEDI.
