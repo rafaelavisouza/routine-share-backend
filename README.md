@@ -53,7 +53,7 @@ Desenvolvedores
 
 Rafaela Vitoria Marques Souza - @rafaelavisoouza
 
-Ivana Nolasco dos Santos
+Ivana Nolasco dos Santos - @NDSIVANA
 
 Vinicius Brito de Oliveira - @VnncsB
 
