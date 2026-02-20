@@ -1,0 +1,17 @@
+1.1 Criar pasta e ambiente virtual
+mkdir rotina_diaria
+cd rotina_diaria
+python -m venv .venv
+.venv\Scripts\activate
+
+1.2 Instalar Django
+pip install django
+
+1.3 Criar projeto config
+django-admin startproject config .
+python manage.py runserver
+
+2) Criar superusuário (painel de controle)
+python manage.py migrate
+Criar admin:
+python manage.py createsuperuser
