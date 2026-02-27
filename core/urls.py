@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from routines.views import dashboard_view, metas_view, historico_view # <-- Atualize o import!
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', dashboard_view, name='dashboard'),
+    path('metas/', metas_view, name='metas'),
+    path('historico/', historico_view, name='historico'), # <-- Adicione a rota aqui
 ]

@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Gym Rats{% endblock %}
+
+{% block content %}
+<div class="row mb-4 mt-3">
+    <div class="col-12">
+        <h2 class="fw-bold text-dark">Olá, Rafaela!</h2>
+        <p class="text-muted">Hoje é 27 de Fevereiro, 2026</p>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+        <h5 class="card-title fw-bold mb-4 text-secondary">Desempenho do Dia</h5>
+        
+        <div class="row text-center mb-4">
+            <div class="col-12 d-flex justify-content-center position-relative">
+                <div style="width: 300px; height: 150px;">
+                    <canvas id="donutChart"></canvas>
+                </div>
+                <div style="position: absolute; top: 60px; font-weight: bold;">
+                    <h1 class="display-5 fw-bold mb-0">75%</h1>
+                    <small class="text-muted">Tarefas concluídas</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-3 pt-3 border-top">
+            <div class="col-4 border-end">
+                <h4 class="fw-bold text-success"><span class="fs-3">✅</span> 5</h4>
+                <span class="text-muted small">tarefas concluídas</span>
+            </div>
+            <div class="col-4 border-end">
+                <h4 class="fw-bold text-warning"><span class="fs-3">⭐</span> 20</h4>
+                <span class="text-muted small">pontos hoje</span>
+            </div>
+            <div class="col-4">
+                <h4 class="fw-bold text-secondary"><span class="fs-3">🏆</span> 2ª</h4>
+                <span class="text-muted small">posição no ranking</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary mb-3">Tarefas de Hoje</h5>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item d-flex align-items-center border-0 px-0">
+                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
+                        <span class="text-muted text-decoration-line-through">Estudar Django</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center border-0 px-0">
+                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
+                        <span class="text-muted text-decoration-line-through">Ir para a academia</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center border-0 px-0">
+                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
+                        <span class="text-muted text-decoration-line-through">Comprar mantimentos</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center border-0 px-0">
+                        <input class="form-check-input me-2" type="checkbox">
+                        <span class="fw-medium">Ler um capítulo de livro</span>
+                    </li>
+                </ul>
+                <a href="#" class="text-decoration-none fw-bold">Ver todas as tarefas</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary mb-3">Ranking Pessoal</h5>
+                
+                <div class="d-flex align-items-center p-2 mb-3 bg-light rounded">
+                    <div class="bg-secondary rounded-circle me-3" style="width: 40px; height: 40px; overflow: hidden;">
+                        <img src="https://ui-avatars.com/api/?name=Rafaela&background=0D8ABC&color=fff" alt="Avatar" width="100%">
+                    </div>
+                    <span class="fw-bold">Rafaela – 20 pts</span>
+                </div>
+
+                <ol class="list-group list-group-numbered list-group-flush mb-3 px-2">
+                    <li class="list-group-item border-0 py-1"><strong>João</strong> – 18 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Ana</strong> – 15 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Carlos</strong> – 12 pts</li>
+                </ol>
+                <div class="text-center mt-auto">
+                    <button class="btn btn-primary btn-sm px-4">Ver ranking completo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary mb-3">Ranking do Grupo</h5>
+                <h6 class="fw-bold mb-3">Grupo Amigos</h6>
+                <ol class="list-group list-group-numbered list-group-flush mb-4 px-2">
+                    <li class="list-group-item border-0 py-1"><strong>Rafaela</strong> – 20 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Bruno</strong> – 18 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Mariana</strong> – 15 pts</li>
+                </ol>
+                <div class="text-center mt-auto">
+                    <button class="btn btn-primary btn-sm px-4">Ver grupo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary mb-3">Ranking Nacional</h5>
+                <h6 class="fw-bold mb-3">Top 5 no País</h6>
+                <ol class="list-group list-group-numbered list-group-flush mb-4 px-2">
+                    <li class="list-group-item border-0 py-1"><strong>Pedro</strong> – 25 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Lucas</strong> – 24 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Marta</strong> – 22 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Felipe</strong> – 20 pts</li>
+                    <li class="list-group-item border-0 py-1"><strong>Julia</strong> – 19 pts</li>
+                </ol>
+                <div class="text-center mt-auto">
+                    <button class="btn btn-primary btn-sm px-4">Ver ranking geral</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">Estatísticas da Semana</h5>
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <canvas id="lineChart" height="100"></canvas>
+            </div>
+            <div class="col-md-4 text-center mt-3 mt-md-0 border-start">
+                <div class="mb-3">
+                    <span class="text-muted">Total de Pontos:</span>
+                    <h3 class="fw-bold">120</h3>
+                </div>
+                <div>
+                    <span class="text-muted">Tarefas concluídas:</span>
+                    <h3 class="fw-bold">25</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Gráfico de Donut (Meia lua)
+    const ctxDonut = document.getElementById('donutChart').getContext('2d');
+    new Chart(ctxDonut, {
+        type: 'doughnut',
+        data: {
+            labels: ['Concluído', 'Pendente'],
+            datasets: [{
+                data: [75, 25], // Os 75% da imagem
+                backgroundColor: ['#28a745', '#e9ecef'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            rotation: 270, // Começa do lado esquerdo
+            circumference: 180, // Faz apenas metade do círculo
+            cutout: '80%', // Deixa o buraco no meio bem grande
+            plugins: { tooltip: { enabled: false }, legend: { display: false } },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // Gráfico de Linha (Estatísticas da semana)
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            datasets: [{
+                label: 'Pontos',
+                data: [5, 3, 6, 5, 21, 5, 8],
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.2)',
+                borderWidth: 2,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#0d6efd',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                fill: true, // Preenche a parte de baixo da linha
+                tension: 0.1 // Linha reta estilo o seu design (mude para 0.4 para ficar curva)
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { min: 0, max: 25, ticks: { stepSize: 5 } }
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Histórico de Tarefas - Rotina Challenge{% endblock %}
+
+{% block content %}
+<div class="row mb-4 mt-3">
+    <div class="col-12">
+        <h2 class="fw-bold text-dark">Histórico de Tarefas</h2>
+        <p class="text-muted">Acompanhe todas as tarefas concluídas e o seu progresso ao longo do tempo.</p>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white pt-3 pb-0 border-bottom-0">
+        <ul class="nav nav-tabs border-bottom">
+            <li class="nav-item">
+                <a class="nav-link active fw-bold text-dark" href="#">Filtrar por Período</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-muted" href="#">Relatório Mensal</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="card-body p-4">
+        <div class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+                <div class="input-group">
+                    <span class="input-group-text bg-white">📅</span>
+                    <input type="date" class="form-control" value="2026-02-01">
+                </div>
+            </div>
+            <div class="col-auto text-muted">—</div>
+            <div class="col-auto">
+                <div class="input-group">
+                    <span class="input-group-text bg-white">📅</span>
+                    <input type="date" class="form-control" value="2026-02-27">
+                </div>
+            </div>
+            <div class="col-auto ms-3">
+                <button class="btn text-white px-4 fw-bold" style="background-color: #1a4b8b;">Filtrar</button>
+                <button class="btn btn-light border px-3">Limpar Filtros</button>
+            </div>
+        </div>
+
+        <div class="row mb-4 align-items-center">
+            <div class="col-auto">
+                <label class="fw-bold me-2">Filtrar por:</label>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option selected>Todas as Categorias</option>
+                    <option>Trabalho</option>
+                    <option>Saúde</option>
+                    <option>Pessoal</option>
+                    <option>Estudos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Data</th>
+                        <th>Tarefa</th>
+                        <th>Categoria</th>
+                        <th>Pontuação</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td class="text-muted">Ler um capítulo de livro</td>
+                        <td class="text-muted">Pessoal</td>
+                        <td class="text-muted">8</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                    </tr>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td class="text-muted">Estudar Django</td>
+                        <td class="text-muted">Estudos</td>
+                        <td class="text-muted">30</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                    </tr>
+                    <tr>
+                        <td>23/02/2026</td>
+                        <td class="text-muted">Ir para a academia</td>
+                        <td class="text-muted">Saúde</td>
+                        <td class="text-muted">15</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                    </tr>
+                    <tr>
+                        <td>22/02/2026</td>
+                        <td class="text-muted">Economizar R$ 100</td>
+                        <td class="text-muted">Pessoal</td>
+                        <td class="text-muted">5</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                    </tr>
+                    <tr>
+                        <td>21/02/2026</td>
+                        <td class="text-muted">Correr 5 km</td>
+                        <td class="text-muted">Saúde</td>
+                        <td class="text-muted">10</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                <li class="page-item active"><a class="page-link" style="background-color: #1a4b8b; border-color: #1a4b8b;" href="#">1</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">&raquo;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row mb-5 text-center">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 py-3">
+            <div class="card-body">
+                <div class="display-5 mb-2">🎯</div>
+                <h6 class="fw-bold mb-3">Tarefas Concluídas.</h6>
+                <h1 class="display-5 fw-bold text-dark mb-1">105</h1>
+                <small class="text-muted">Tarefas Concluídas.</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 py-3">
+            <div class="card-body">
+                <h1 class="display-4 fw-bold text-success mb-2">+ 340</h1>
+                <span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-1 mb-3">
+                    +80 nesta semana ⬇
+                </span>
+                <br>
+                <small class="text-muted">Total de pontos acumulados.</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 py-3">
+            <div class="card-body">
+                <div class="display-5 mb-2">🏆</div>
+                <h6 class="fw-bold mb-3">Metas Atingidas</h6>
+                <h1 class="display-5 fw-bold text-dark mb-1">2</h1>
+                <small class="text-muted">Metas atingidas.</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

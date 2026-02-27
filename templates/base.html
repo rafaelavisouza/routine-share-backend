@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Gym Rats - Rotinas{% endblock %}</title>
+    <title>{% block title %}Rotina Challenge{% endblock %}</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         body { background-color: #f8f9fa; }
         .navbar-brand { font-weight: bold; }
+        /* Adiciona uma barrinha embaixo do link ativo, igual no seu design */
+        .navbar-nav .nav-link { font-weight: 500; margin: 0 5px; }
+        .navbar-nav .nav-link:hover { text-decoration: underline; text-underline-offset: 5px; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #1a4b8b;">
         <div class="container">
-            <a class="navbar-brand" href="#">🏋️ Gym Rats</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="/dashboard/">
+                <span>🎯 Rotina Challenge</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="/dashboard/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Grupos & Ranking</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Sair</a>
+                        <a class="nav-link" href="#">Grupos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/metas/">Metas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/historico/">Histórico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-warning fw-bold" href="#">Sair</a>
                     </li>
                 </ul>
             </div>

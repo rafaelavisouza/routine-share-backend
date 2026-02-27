@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}Metas e Tarefas - Rotina Challenge{% endblock %}
+
+{% block content %}
+<div class="row mb-4 mt-3">
+    <div class="col-12">
+        <h2 class="fw-bold text-dark">🎯 Metas e Tarefas</h2>
+        <p class="text-muted">Cadastre suas atividades diárias ou defina objetivos a longo prazo.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7 mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white pt-3 pb-0 border-bottom-0">
+                <ul class="nav nav-tabs border-bottom" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-bold text-dark" id="tarefa-tab" data-bs-toggle="tab" data-bs-target="#tarefa" type="button" role="tab" aria-selected="true">
+                            📋 Nova Tarefa Diária
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-bold text-dark" id="meta-tab" data-bs-toggle="tab" data-bs-target="#meta" type="button" role="tab" aria-selected="false">
+                            🏆 Nova Meta
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-body p-4">
+                <div class="tab-content" id="myTabContent">
+                    
+                    <div class="tab-pane fade show active" id="tarefa" role="tabpanel" tabindex="0">
+                        <form>
+                            <div class="mb-3">
+                                <label for="tituloTarefa" class="form-label fw-bold">O que você precisa fazer hoje?</label>
+                                <input type="text" class="form-control" id="tituloTarefa" placeholder="Ex: Estudar Django por 2 horas">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="descTarefa" class="form-label fw-bold">Descrição (Opcional)</label>
+                                <textarea class="form-control" id="descTarefa" rows="2" placeholder="Detalhes da tarefa..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="categoriaTarefa" class="form-label fw-bold">Categoria</label>
+                                <select class="form-select mb-2" id="categoriaTarefa" onchange="toggleNovaCategoria('categoriaTarefa', 'inputNovaCategoriaTarefa')">
+                                    <option selected disabled>Selecione uma categoria...</option>
+                                    <option value="estudos">📚 Estudos</option>
+                                    <option value="saude">🏋️ Saúde</option>
+                                    <option value="pessoal">🧘 Pessoal</option>
+                                    <option value="trabalho">💼 Trabalho</option>
+                                    <option value="novo" class="fw-bold text-primary">+ Criar Nova Categoria</option>
+                                </select>
+                                <input type="text" class="form-control d-none border-primary" id="inputNovaCategoriaTarefa" placeholder="Digite o nome da nova categoria...">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="dificuldadeTarefa" class="form-label fw-bold">Dificuldade / Pontuação</label>
+                                <select class="form-select" id="dificuldadeTarefa">
+                                    <option value="F" selected>🟢 Fácil (+10 pontos)</option>
+                                    <option value="M">🟡 Média (+20 pontos)</option>
+                                    <option value="D">🔴 Difícil (+30 pontos)</option>
+                                </select>
+                            </div>
+                            
+                            <button type="button" class="btn text-white w-100 fw-bold" style="background-color: #1a4b8b;">
+                                + Adicionar Tarefa
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="meta" role="tabpanel" tabindex="0">
+                        <form>
+                            <div class="mb-3">
+                                <label for="tituloMeta" class="form-label fw-bold">Qual o seu grande objetivo?</label>
+                                <input type="text" class="form-control" id="tituloMeta" placeholder="Ex: Ler 12 livros no ano">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="categoriaMeta" class="form-label fw-bold">Categoria</label>
+                                <select class="form-select mb-2" id="categoriaMeta" onchange="toggleNovaCategoria('categoriaMeta', 'inputNovaCategoriaMeta')">
+                                    <option selected disabled>Selecione uma categoria...</option>
+                                    <option value="estudos">📚 Estudos</option>
+                                    <option value="saude">🏋️ Saúde</option>
+                                    <option value="pessoal">🧘 Pessoal</option>
+                                    <option value="trabalho">💼 Trabalho</option>
+                                    <option value="novo" class="fw-bold text-primary">+ Criar Nova Categoria</option>
+                                </select>
+                                <input type="text" class="form-control d-none border-primary" id="inputNovaCategoriaMeta" placeholder="Digite o nome da nova categoria...">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="tipoMeta" class="form-label fw-bold">Tipo de Meta</label>
+                                <select class="form-select" id="tipoMeta">
+                                    <option value="S" selected>📅 Semanal</option>
+                                    <option value="M">📆 Mensal</option>
+                                    <option value="A">🗓️ Anual</option>
+                                </select>
+                                <div class="form-text">Metas dão bônus extras de pontuação ao serem concluídas!</div>
+                            </div>
+                            
+                            <button type="button" class="btn text-white w-100 fw-bold" style="background-color: #1a4b8b;">
+                                + Criar Meta
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary mb-4">Suas Metas Ativas</h5>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold">Treinar 4x na semana</span>
+                        <span class="badge bg-primary">Semanal</span>
+                    </div>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">3/4 concluído</small>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold">Aprender Python Base</span>
+                        <span class="badge bg-warning text-dark">Mensal</span>
+                    </div>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">Em andamento...</small>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold">Ler 12 livros</span>
+                        <span class="badge bg-danger">Anual</span>
+                    </div>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">2/12 concluído</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleNovaCategoria(selectId, inputId) {
+        const select = document.getElementById(selectId);
+        const input = document.getElementById(inputId);
+        
+        // Se a opção selecionada for "novo", mostra o input. Senão, esconde.
+        if (select.value === 'novo') {
+            input.classList.remove('d-none'); // Remove a classe que esconde
+            input.focus(); // Coloca o cursor piscando lá dentro
+        } else {
+            input.classList.add('d-none'); // Adiciona a classe que esconde
+            input.value = ''; // Limpa o texto se a pessoa desistir
+        }
+    }
+</script>
+{% endblock %}
