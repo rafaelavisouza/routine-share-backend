@@ -1,0 +1,144 @@
+{% extends "accounts/base.html" %}
+
+{% block top_action %}
+  <span class="me-2 text-white-50">Já tem uma conta?</span>
+  <a class="btn btn-sm btn-light" href="{% url 'login' %}">Entrar</a>
+{% endblock %}
+
+{% block content %}
+<div class="center-wrapper">
+  <h2 class="text-center mt-4">Cadastrar Nova Conta</h2>
+  <p class="text-center text-muted">Preencha os campos abaixo para criar sua conta.</p>
+
+  <div class="card card-soft p-4 mt-4">
+
+    <!--
+      IMPORTANTE: enctype="multipart/form-data" é obrigatório para enviar foto (arquivo)
+    -->
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Se tiver erro em algum campo, eu aviso aqui -->
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          <strong>Ops!</strong> Revise os campos e tente novamente.
+        </div>
+      {% endif %}
+
+      <!-- Nome -->
+      <label class="form-label">Nome completo</label>
+      <div class="input-icon mb-3">
+        <span>👤</span>
+
+        <!-- Eu coloquei placeholder pra ficar igual ao mock -->
+        <input
+          type="text"
+          name="first_name"
+          placeholder="Ex: Maria Silva"
+          value="{{ form.first_name.value|default:'' }}"
+          autocomplete="name"
+        />
+      </div>
+
+      <!-- Email -->
+      <label class="form-label">E-mail</label>
+      <div class="input-icon mb-3">
+        <span>📧</span>
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Ex: maria@gmail.com"
+          value="{{ form.email.value|default:'' }}"
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Usuário -->
+      <label class="form-label">Usuário</label>
+      <div class="input-icon mb-3">
+        <span>🆔</span>
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Ex: maria123"
+          value="{{ form.username.value|default:'' }}"
+          autocomplete="username"
+        />
+      </div>
+
+      <!-- Senha -->
+      <label class="form-label">Senha</label>
+      <div class="input-icon mb-3">
+        <span>🔒</span>
+
+        <input
+          type="password"
+          name="password1"
+          placeholder="Crie uma senha"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <!-- Confirmar senha -->
+      <label class="form-label">Confirmar senha</label>
+      <div class="input-icon mb-3">
+        <span>🔒</span>
+
+        <input
+          type="password"
+          name="password2"
+          placeholder="Repita a senha"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <!-- Telefone -->
+      <label class="form-label">Telefone</label>
+      <div class="input-icon mb-3">
+        <span>📱</span>
+
+        <input
+          type="text"
+          name="phone"
+          placeholder="Ex: (11) 99999-9999"
+          value="{{ form.phone.value|default:'' }}"
+        />
+      </div>
+
+      <!-- Endereço -->
+      <label class="form-label">Endereço</label>
+      <div class="input-icon mb-3">
+        <span>📍</span>
+
+        <input
+          type="text"
+          name="address"
+          placeholder="Ex: Rua A, 123 - Centro"
+          value="{{ form.address.value|default:'' }}"
+          autocomplete="street-address"
+        />
+      </div>
+
+      <!-- Upload de foto -->
+      <label class="form-label">Foto de perfil</label>
+      <div class="mb-3">
+        <!-- Aqui eu deixo a pessoa escolher uma imagem do PC -->
+        <input type="file" name="photo" class="form-control" accept="image/*">
+
+        <small class="text-muted">
+          Escolha uma imagem (JPG/PNG) do seu computador.
+        </small>
+      </div>
+
+      <button class="btn btn-main w-100 text-white mt-2" type="submit">Cadastrar</button>
+
+      <div class="text-center mt-3 text-muted">
+        Já tem uma conta?
+        <a href="{% url 'login' %}">Entrar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

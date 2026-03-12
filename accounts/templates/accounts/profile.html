@@ -1,0 +1,271 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 1200px;">
+
+  <!-- Título e data -->
+  <h1 class="fw-bold mb-2">Perfil de {{ user.first_name|default:user.username }}</h1>
+  <p class="text-muted">
+    Hoje é <strong>{% now "d \d\e F, Y" %}</strong>
+  </p>
+
+  <!-- CARD GRANDE DO TOPO (foto + infos + gráfico semanal) -->
+  <div class="card card-soft p-4 mt-3">
+    <div class="row g-4 align-items-center">
+
+      <!-- Foto + botão -->
+      <div class="col-12 col-md-3 text-center">
+        {% if user.profile.photo %}
+          <img src="{{ user.profile.photo.url }}"
+               class="rounded"
+               style="width: 190px; height: 190px; object-fit: cover;"
+               alt="Foto do usuário">
+        {% else %}
+          <div class="rounded bg-secondary-subtle d-flex align-items-center justify-content-center mx-auto"
+               style="width:190px;height:190px;">
+            <span class="text-muted">Sem foto</span>
+          </div>
+        {% endif %}
+
+        <!-- Botão igual ao mock -->
+        <button class="btn btn-main text-white w-100 mt-3" type="button"
+                onclick="document.getElementById('editBox').classList.toggle('d-none')">
+          ✏️ Editar Perfil
+        </button>
+      </div>
+
+      <!-- Infos do usuário -->
+      <div class="col-12 col-md-5">
+        <h2 class="fw-bold mb-0">{{ user.first_name|default:user.username }}</h2>
+        <p class="text-muted mb-3">{{ user.email }}</p>
+
+        <!-- Por enquanto deixo como placeholder, mas já fica igual ao mock -->
+        <p class="mb-2">👥 <strong>Grupo Amigos</strong></p>
+
+        <div class="d-flex align-items-center gap-2">
+          <span style="font-size: 26px;">⭐</span>
+          <div>
+            <span class="fw-bold" style="font-size: 34px;">120</span>
+            <span class="text-muted">Pontos acumulados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pontuação semanal (gráfico fake com barras) -->
+      <div class="col-12 col-md-4">
+        <h5 class="fw-bold">Pontuação Semanal</h5>
+        <hr class="my-2" />
+
+        <div class="d-flex align-items-end gap-2" style="height:150px;">
+          <div class="rounded bg-primary opacity-75" style="width:16%; height:45%;"></div>
+          <div class="rounded bg-primary opacity-50" style="width:16%; height:60%;"></div>
+          <div class="rounded bg-primary opacity-50" style="width:16%; height:75%;"></div>
+          <div class="rounded bg-primary opacity-50" style="width:16%; height:35%;"></div>
+          <div class="rounded bg-primary opacity-75" style="width:16%; height:85%;"></div>
+          <div class="rounded bg-primary opacity-50" style="width:16%; height:55%;"></div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 12px;">
+          <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Dom</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LINHA DE CARDS DO MEIO -->
+  <div class="row g-4 mt-4">
+
+    <!-- Dados pessoais -->
+    <div class="col-12 col-lg-6">
+      <div class="card card-soft p-4">
+        <h4 class="fw-bold">Dados Pessoais</h4>
+        <hr class="my-2" />
+
+        <p class="mb-2"><strong>Nome completo:</strong><br>
+          {{ user.first_name|default:user.username }}
+        </p>
+
+        <p class="mb-2"><strong>Email:</strong><br>
+          {{ user.email|default:"-" }}
+        </p>
+
+        <p class="mb-2"><strong>Telefone:</strong><br>
+          {{ user.profile.phone|default:"-" }}
+        </p>
+
+        <p class="mb-0"><strong>Endereço:</strong><br>
+          {{ user.profile.address|default:"-" }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Configurações + Ranking -->
+    <div class="col-12 col-lg-6">
+      <div class="row g-4">
+
+        <div class="col-12">
+          <div class="card card-soft p-4">
+            <h4 class="fw-bold">Configurações</h4>
+            <hr class="my-2" />
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="text-muted">Grupo Atual</div>
+                <div class="fw-bold">⭐ Grupo Amigos</div>
+              </div>
+
+              <!-- Placeholder (quando o app de grupos estiver pronto, liga aqui) -->
+              <button class="btn btn-main text-white px-4" type="button" disabled>
+                Mudar Grupo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="card card-soft p-4">
+            <h4 class="fw-bold">Ranking Nacional</h4>
+            <hr class="my-2" />
+
+            <!-- Lista fake só pra bater com o mock -->
+            <ol class="mb-0">
+              <li><strong>Pedro</strong> — 25 pts</li>
+              <li><strong>Lucas</strong> — 24 pts</li>
+              <li><strong>Marta</strong> — 22 pts</li>
+              <li><strong>Felipe</strong> — 20 pts</li>
+              <li><strong>Julia</strong> — 19 pts</li>
+            </ol>
+
+            <div class="text-center mt-3">
+              <button class="btn btn-main text-white px-4" type="button" disabled>
+                Ver ranking geral
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Botão sair central igual ao mock -->
+  <div class="text-center mt-4">
+    <a class="btn btn-danger px-5 py-2" href="{% url 'logout' %}">⏻ Sair</a>
+  </div>
+
+
+    <!-- CARD: Estatísticas da Semana (agora com título e no padrão do site) -->
+  <div class="card card-soft p-4 mt-4">
+    <h4 class="fw-bold">Estatísticas da Semana</h4>
+    <hr class="my-2" />
+
+    <div class="stats-chart mt-2">
+
+      <div class="svg-wrap">
+        <svg viewBox="5 5 195 200" width="100%" height="100%">
+
+          <!-- Área preenchida -->
+          <path class="stats-area"
+            d="
+              M 0 62
+              C 12 55, 24 52, 36 45
+              C 48 38, 60 36, 72 41
+              C 84 47, 92 52, 100 58
+              L 100 100
+              L 0 100
+              Z
+            " />
+
+          <!-- Linha principal -->
+          <path class="stats-line"
+            d="
+              M 0 62
+              C 12 55, 24 52, 36 45
+              C 48 38, 60 36, 72 41
+              C 84 47, 92 52, 100 58
+            " />
+
+          <!-- Pontos: anel branco + bolinha azul -->
+          <circle class="stats-dot-outer" cx="0" cy="62" r="4.2" />
+          <circle class="stats-dot-inner" cx="0" cy="62" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="16.6" cy="55" r="4.2" />
+          <circle class="stats-dot-inner" cx="16.6" cy="55" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="33.2" cy="52" r="4.2" />
+          <circle class="stats-dot-inner" cx="33.2" cy="52" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="49.8" cy="40" r="4.2" />
+          <circle class="stats-dot-inner" cx="49.8" cy="40" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="66.4" cy="36" r="4.2" />
+          <circle class="stats-dot-inner" cx="66.4" cy="36" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="83" cy="47" r="4.2" />
+          <circle class="stats-dot-inner" cx="83" cy="47" r="2.2" />
+
+          <circle class="stats-dot-outer" cx="100" cy="58" r="4.2" />
+          <circle class="stats-dot-inner" cx="100" cy="58" r="2.2" />
+        </svg>
+      </div>
+
+      <div class="stats-labels">
+        <span>Seg</span>
+        <span>Ter</span>
+        <span>Qua</span>
+        <span>Qui</span>
+        <span>Sex</span>
+        <span>Sáb</span>
+        <span>Dom</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOX DE EDIÇÃO (upload + telefone + endereço) -->
+  <div id="editBox" class="card card-soft p-4 mt-4 d-none">
+    <h4 class="fw-bold mb-3">Editar Perfil</h4>
+
+    <form method="post" action="{% url 'profile_update' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <label class="form-label fw-semibold">Trocar foto</label>
+          <input type="file" name="photo" class="form-control" accept="image/*">
+          <small class="text-muted">Escolha uma imagem (jpg/png) do seu computador.</small>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label fw-semibold">Telefone</label>
+          <div class="input-icon">
+            <span>📞</span>
+            <input type="text" name="phone" placeholder="(11) 99999-9999"
+                   value="{{ user.profile.phone|default:'' }}">
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold">Endereço</label>
+          <div class="input-icon">
+            <span>📍</span>
+            <input type="text" name="address" placeholder="Seu endereço completo"
+                   value="{{ user.profile.address|default:'' }}">
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-main text-white px-4">Salvar</button>
+        <button type="button" class="btn btn-outline-secondary px-4"
+                onclick="document.getElementById('editBox').classList.add('d-none')">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+{% endblock %}
