@@ -1,0 +1,73 @@
+{% extends "accounts/base.html" %}
+
+{% block top_action %}
+  <span class="me-2 text-white-50">Ainda não possui uma conta?</span>
+  <a class="btn btn-sm btn-light" href="{% url 'register' %}">Cadastrar</a>
+{% endblock %}
+
+{% block content %}
+<div class="center-wrapper">
+  <h2 class="text-center mt-4">Fazer Login</h2>
+  <p class="text-center text-muted">Entre com suas credenciais para acessar sua conta.</p>
+
+  <div class="card card-soft p-4 mt-4">
+    <h5 class="mb-3">Fazer Login</h5>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Se o login falhar, o Django coloca o erro aqui -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+
+      <!-- Campo: usuário/email -->
+      <label class="form-label">E-mail / Usuário</label>
+      <div class="input-icon mb-3">
+        <span>📧</span>
+
+        <!--
+          Eu renderizo o input manualmente porque eu quero controlar o placeholder
+          e deixar igual ao layout do mock.
+        -->
+        <input
+          type="text"
+          name="username"
+          placeholder="Seu e-mail"
+          value="{{ form.username.value|default:'' }}"
+          autocomplete="username"
+        />
+      </div>
+
+      <!-- Campo: senha -->
+      <label class="form-label">Senha</label>
+      <div class="input-icon mb-3">
+        <span>🔒</span>
+
+        <!-- Mesmo esquema: placeholder clarinho e sem estilo extra -->
+        <input
+          type="password"
+          name="password"
+          placeholder="Sua senha"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button class="btn btn-main w-100 text-white mt-2" type="submit">Entrar</button>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>
+      </div>
+
+      <hr class="my-4" />
+
+      <div class="text-center text-muted">
+        Ainda não possui uma conta?
+        <a href="{% url 'register' %}">Cadastrar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
