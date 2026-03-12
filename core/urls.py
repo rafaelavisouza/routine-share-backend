@@ -1,50 +1,21 @@
-"""
-URL configuration for core project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
+from routines.views import dashboard_view, metas_view, historico_view, concluir_tarefa
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path("", include("accounts.urls")),
-    path("admin/", admin.site.urls),
-]
-
-from django.contrib import admin
-from django.urls import path, include
-from django.views.generic import RedirectView  # 👈 eu importo isso pra redirecionar fácil
-
-urlpatterns = [
-    # Eu mando a rota raiz (/) direto pro login
+    # Rota raiz: manda direto para o login
     path("", RedirectView.as_view(url="/login/", permanent=False)),
-
+    
+    # Administração
+    path('admin/', admin.site.urls),
+    
+    # Contas e Autenticação (Parte da sua colega)
     path("", include("accounts.urls")),
-    path("admin/", admin.site.urls),
-]
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns = [
-    path("", include("accounts.urls")),
-    path("admin/", admin.site.urls),
+    
+    # Rotinas e Metas (Sua parte)
+    path('dashboard/', dashboard_view, name='dashboard'),
+    path('metas/', metas_view, name='metas'),
+    path('historico/', historico_view, name='historico'),
+    path('tarefa/<int:tarefa_id>/concluir/', concluir_tarefa, name='concluir_tarefa'),
 ]
