@@ -70,41 +70,32 @@
                     </tr>
                 </thead>
                 <tbody>
+                   <tbody>
+                    {% for tarefa in tarefas_concluidas %}
                     <tr>
-                        <td>24/02/2026</td>
-                        <td class="text-muted">Ler um capítulo de livro</td>
-                        <td class="text-muted">Pessoal</td>
-                        <td class="text-muted">8</td>
+                        <td>Hoje</td>
+                        
+                        <td class="text-muted fw-bold">{{ tarefa.titulo }}</td>
+                        
+                        <td class="text-muted">{{ tarefa.categoria|title }}</td>
+                        
+                        <td class="text-muted">
+                            {% if tarefa.dificuldade == 'F' %}10 pts
+                            {% elif tarefa.dificuldade == 'M' %}20 pts
+                            {% else %}30 pts{% endif %}
+                        </td>
+                        
                         <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
                     </tr>
+                    
+                    {% empty %}
                     <tr>
-                        <td>24/02/2026</td>
-                        <td class="text-muted">Estudar Django</td>
-                        <td class="text-muted">Estudos</td>
-                        <td class="text-muted">30</td>
-                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
+                        <td colspan="5" class="text-center py-4 text-muted">
+                            <em>Você ainda não concluiu nenhuma tarefa. Bora focar no Dashboard!</em>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>23/02/2026</td>
-                        <td class="text-muted">Ir para a academia</td>
-                        <td class="text-muted">Saúde</td>
-                        <td class="text-muted">15</td>
-                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
-                    </tr>
-                    <tr>
-                        <td>22/02/2026</td>
-                        <td class="text-muted">Economizar R$ 100</td>
-                        <td class="text-muted">Pessoal</td>
-                        <td class="text-muted">5</td>
-                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
-                    </tr>
-                    <tr>
-                        <td>21/02/2026</td>
-                        <td class="text-muted">Correr 5 km</td>
-                        <td class="text-muted">Saúde</td>
-                        <td class="text-muted">10</td>
-                        <td><span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-2">✅ Concluída</span></td>
-                    </tr>
+                    {% endfor %}
+                </tbody>
                 </tbody>
             </table>
         </div>
@@ -127,29 +118,31 @@
             <div class="card-body">
                 <div class="display-5 mb-2">🎯</div>
                 <h6 class="fw-bold mb-3">Tarefas Concluídas.</h6>
-                <h1 class="display-5 fw-bold text-dark mb-1">105</h1>
+                <h1 class="display-5 fw-bold text-dark mb-1">{{ total_tarefas }}</h1>
                 <small class="text-muted">Tarefas Concluídas.</small>
             </div>
         </div>
     </div>
+    
     <div class="col-md-4">
         <div class="card shadow-sm border-0 h-100 py-3">
             <div class="card-body">
-                <h1 class="display-4 fw-bold text-success mb-2">+ 340</h1>
+                <h1 class="display-4 fw-bold text-success mb-2">+ {{ total_pontos }}</h1>
                 <span class="badge bg-success bg-opacity-25 text-success border border-success rounded-pill px-3 py-1 mb-3">
-                    +80 nesta semana ⬇
+                    Pontuação Atual
                 </span>
                 <br>
                 <small class="text-muted">Total de pontos acumulados.</small>
             </div>
         </div>
     </div>
+    
     <div class="col-md-4">
         <div class="card shadow-sm border-0 h-100 py-3">
             <div class="card-body">
                 <div class="display-5 mb-2">🏆</div>
                 <h6 class="fw-bold mb-3">Metas Atingidas</h6>
-                <h1 class="display-5 fw-bold text-dark mb-1">2</h1>
+                <h1 class="display-5 fw-bold text-dark mb-1">{{ total_metas }}</h1>
                 <small class="text-muted">Metas atingidas.</small>
             </div>
         </div>

@@ -49,24 +49,35 @@
         <div class="card shadow-sm border-0 h-100">
             <div class="card-body">
                 <h5 class="card-title fw-bold text-secondary mb-3">Tarefas de Hoje</h5>
-                <ul class="list-group list-group-flush mb-3">
-                    <li class="list-group-item d-flex align-items-center border-0 px-0">
-                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
-                        <span class="text-muted text-decoration-line-through">Estudar Django</span>
-                    </li>
-                    <li class="list-group-item d-flex align-items-center border-0 px-0">
-                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
-                        <span class="text-muted text-decoration-line-through">Ir para a academia</span>
-                    </li>
-                    <li class="list-group-item d-flex align-items-center border-0 px-0">
-                        <input class="form-check-input me-2 bg-success border-success" type="checkbox" checked disabled>
-                        <span class="text-muted text-decoration-line-through">Comprar mantimentos</span>
-                    </li>
-                    <li class="list-group-item d-flex align-items-center border-0 px-0">
-                        <input class="form-check-input me-2" type="checkbox">
-                        <span class="fw-medium">Ler um capítulo de livro</span>
-                    </li>
-                </ul>
+{% for tarefa in tarefas %}
+        <li class="list-group-item d-flex align-items-center border-0 px-0">
+            
+            <span class="{% if tarefa.concluida %}text-muted text-decoration-line-through{% else %}fw-medium{% endif %}">
+                {{ tarefa.titulo }}
+            </span>
+            <span class="badge bg-secondary rounded-pill ms-2" style="font-size: 0.7em;">
+                {{ tarefa.get_dificuldade_display }}
+            </span>
+
+            <div class="ms-auto">
+                {% if tarefa.concluida %}
+                    <span class="badge bg-success px-3 py-2">✅ Concluída</span>
+                {% else %}
+                    <form action="{% url 'concluir_tarefa' tarefa.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                            Concluir
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+            
+        </li>
+    {% empty %}
+        <li class="list-group-item border-0 px-0 text-center text-muted py-4">
+            <em>Você não tem tarefas cadastradas. Vá em "Metas" e crie sua primeira rotina!</em>
+        </li>
+    {% endfor %}
                 <a href="#" class="text-decoration-none fw-bold">Ver todas as tarefas</a>
             </div>
         </div>
